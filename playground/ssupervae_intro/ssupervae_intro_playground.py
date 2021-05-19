@@ -10,6 +10,7 @@ from data.datasets.golden_panels import GoldenPanelsDataset
 
 from networks.ssupervae import SSuperVAE
 from networks.ssupervae_intro import IntroSSuperVAE
+from training.intro_ssupervae_trainer import IntroSSuperVAETrainer
 from training.intro_vae_trainer import IntroVAETrainer
 from training.vae_trainer import VAETrainer
 from utils.config_utils import read_config, Config
@@ -71,7 +72,7 @@ def train(data_loader,
 
 
     # init trainer
-    trainer = IntroVAETrainer(model=net,
+    trainer = IntroSSuperVAETrainer(model=net,
                               model_name=model_name,
                               test_criterion=test_criterion,
                               train_loader=data_loader,

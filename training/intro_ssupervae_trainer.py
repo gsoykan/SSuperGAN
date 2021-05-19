@@ -13,7 +13,7 @@ from utils import pytorch_util as ptu
 from utils.image_utils import *
 
 
-class IntroVAETrainer(BaseTrainer):
+class IntroSSuperVAETrainer(BaseTrainer):
     def __init__(self,
                  model: IntroSSuperVAE,
                  model_name: str,
