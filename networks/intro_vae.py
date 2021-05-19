@@ -95,6 +95,16 @@ class Encoder(nn.Module):
         # mu, logvar = y.chunk(2, dim=1)
         # return mu, logvar
 
+    def forward_with_latents(self, x):
+        encoder_output = self.forward(x)
+        mu, logstd = torch.chunk(encoder_output, 2, dim=1)
+        # sample z from q
+        std = torch.exp(logstd)
+        q = torch.distributions.Normal(mu, std)
+        z = q.rsample()
+        # q_phi or p_theta they are same
+        return [z, mu, logstd]
+
 
 class Decoder(nn.Module):
     def __init__(self,
@@ -124,7 +134,7 @@ class Decoder(nn.Module):
         self.main.add_module('predict', nn.Conv2d(cc, cdim, 5, 1, 2))
 
     def forward(self, z):
-        z = z.view(z.size(0), -1) # converts to (B, embed_size) for linear layer
+        z = z.view(z.size(0), -1)  # converts to (B, embed_size) for linear layer
         y = self.fc(z)
         y = y.view(z.size(0), -1, 4, 4)
         y = self.main(y)
