@@ -30,7 +30,6 @@ def save_best_loss_model(model_name, model, best_loss):
 def continue_training(model_name, train_golden_face=True, cont_epoch=1):
     logging.info("Continuing training...")
     config = read_config(Config.INTRO_VAE)
-
     # loading datasets
     if train_golden_face:
         golden_age_config = read_config(Config.GOLDEN_AGE)
@@ -90,7 +89,6 @@ def train(model_name='test_model', train_golden_face=True):
     # loading config
     logging.info("Initiating training...")
     config = read_config(Config.INTRO_VAE)
-
     # loading datasets
     if train_golden_face:
         golden_age_config = read_config(Config.GOLDEN_AGE)
