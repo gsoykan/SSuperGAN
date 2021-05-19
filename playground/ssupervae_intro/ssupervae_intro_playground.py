@@ -118,7 +118,7 @@ if __name__ == '__main__':
     cont_epoch = -1
     cont_model = None  # "playground/ssupervae/weights/model-18.pth"
 
-    limit_size = 64
+    limit_size = 1024
     # data = RandomDataset((3, 3, 360, 360), (3, config.image_dim, config.image_dim))
     data = GoldenPanelsDataset(golden_age_config.panel_path,
                                golden_age_config.sequence_path,
@@ -130,7 +130,7 @@ if __name__ == '__main__':
                                return_mask=golden_age_config.return_mask,
                                train_test_ratio=golden_age_config.train_test_ratio,
                                train_mode=True,
-                               limit_size=-1)
+                               limit_size=limit_size)
     data_loader = DataLoader(data, batch_size=config.batch_size, shuffle=True, num_workers=4)
 
     if config.use_lstm:
@@ -143,4 +143,4 @@ if __name__ == '__main__':
                   model_name,
                   cont_epoch=cont_epoch,
                   cont_model=cont_model)
-    torch.save(model, base_dir + 'playground/ssupervae_intro/results/' + "ssuper_vae_model.pth")
+    torch.save(model, base_dir + 'playground/ssupervae_intro/results/' + "ssupervae_intro_model.pth")
