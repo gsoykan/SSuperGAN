@@ -15,7 +15,6 @@ class Config(Enum):
     INTRO_VAE = 8
     SSUPERVAE_INTRO = 9
 
-
 def read_config(config: Config):
     if config == Config.FACE_RECOGNITION:
         path = base_dir + 'configs/face_recognition_config.yaml'

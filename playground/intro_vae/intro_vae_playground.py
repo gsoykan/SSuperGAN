@@ -93,7 +93,7 @@ def train(model_name='test_model', train_golden_face=True):
     if train_golden_face:
         golden_age_config = read_config(Config.GOLDEN_AGE)
         train_dataset = GoldenFacesDataset(
-            golden_age_config.faces_path, 
+            golden_age_config.faces_path,
             config.image_dim,
             limit_size=config.num_training_samples,
             augment=False,
@@ -101,9 +101,9 @@ def train(model_name='test_model', train_golden_face=True):
             train_test_ratio=golden_age_config.face_train_test_ratio
         )
         train_dataloader = DataLoader(train_dataset, batch_size=config.batch_size, shuffle=True)
-       # test_dataset = GoldenFacesDataset(
+        # test_dataset = GoldenFacesDataset(
         #    golden_age_config.faces_path, config.image_dim, limit_size=config.num_test_samples, augment=False)
-       # test_dataloader = DataLoader(test_dataset, batch_size=config.batch_size, shuffle=False)
+        # test_dataloader = DataLoader(test_dataset, batch_size=config.batch_size, shuffle=False)
         test_dataloader = None
     else:
         train_dataset = FFHQDataset(datasource=FFHQDatasource(config, DataSourceMode.TRAIN))
