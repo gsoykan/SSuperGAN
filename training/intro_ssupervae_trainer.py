@@ -149,6 +149,7 @@ class IntroSSuperVAETrainer(BaseTrainer):
             self.optimizer_e.zero_grad()
 
             z_p = self.model.latent_dist.rsample((batch_size, self.model.latent_dim)).squeeze()
+            # TODO: throws error on samples smaller than batchsize
             x_p = self.model.decode(z_p)
 
             z, _, mu_z, x_r, logstd_z = self.model(x)
