@@ -119,7 +119,7 @@ if __name__ == '__main__':
     cont_epoch = -1
     cont_model = None  # "playground/ssupervae/weights/model-18.pth"
 
-    limit_size = 1024
+    limit_size = 10240 - 1
     # data = RandomDataset((3, 3, 360, 360), (3, config.image_dim, config.image_dim))
     data = GoldenPanelsDataset(golden_age_config.panel_path,
                                golden_age_config.sequence_path,
@@ -137,7 +137,7 @@ if __name__ == '__main__':
     if config.use_lstm:
         model_name = "lstm_ssupervae_model"
     else:
-        model_name = "plain_ssupervae_model"
+        model_name = "intro_ae5_ssupervae_model"
 
     model = train(data_loader,
                   config,
