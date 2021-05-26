@@ -129,7 +129,7 @@ if __name__ == '__main__':
     if config.use_lstm:
         model_name = "lstm_ssupervae_model"
     else:
-        model_name = "intro_ae5_ssupervae_model"
+        model_name = "intro_ae2_ssupervae_model"
 
     model = train(data_loader,
                   config,
