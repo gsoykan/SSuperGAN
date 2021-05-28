@@ -259,6 +259,60 @@ ndf : 64
 ngpu : 1
 ```
 
+### Context Attention MODULE
+- In order to run the module 'vae_context_attn_config.yaml' file should be created under configs.
+- Example Config:
+```yaml
+# Encoder Parameters
+backbone: "efficientnet-b5"
+seq_size: 3
+embed_dim: 256
+
+# Decoder Parameters
+latent_dim: 256
+decoder_channels:
+    - 64
+    - 128
+    - 256
+    - 512
+image_dim: 64
+
+# Training Parameters
+batch_size: 1
+train_epochs: 100
+lr: 0.0001
+weight_decay: 0.000025
+beta_1: 0.5
+beta_2: 0.9
+g_clip: 100
+
+# contextual attention related
+compute_g_loss: True
+coarse_l1_alpha: 1.2
+l1_loss_alpha: 1.2
+ae_loss_alpha: 1.2
+
+global_wgan_loss_alpha: 1.
+gan_loss_alpha: 0.001
+wgan_gp_lambda: 10
+
+netG:
+  input_dim: 3
+  ngf: 16
+
+netD:
+  input_dim: 3
+  ndf: 32
+```
+### Glbal & Local Discrimination MODULE
+- In order to run the module 'global_local_disc_config.yaml' file should be created under configs.
+- Example Config:
+```
+global_wgan_loss_alpha: 1.
+gan_loss_alpha: 0.001
+wgan_gp_lambda: 10
+```
+
 ### Project Based Configuration
 
 One should check and update 'configs/base_config' for global config parameters such base project directory.
