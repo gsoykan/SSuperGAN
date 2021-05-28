@@ -86,6 +86,7 @@ seq_size: 3
 # LSTM Encoder Parameters
 lstm_hidden: 256
 lstm_dropout: 0
+lstm_bidirectional: False
 fc_hidden_dims: []
 fc_dropout: 0
 num_lstm_layers: 1
