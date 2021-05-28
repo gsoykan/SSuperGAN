@@ -60,6 +60,7 @@ annot_path: /userfiles/comics_grp/golden_age/face_annots/
 mask_val: 1
 mask_all: False
 return_mask: False
+return_mask_coordinates: False
 train_test_ratio: 0.95
 train_mode: True
 panel_dim: 
