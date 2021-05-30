@@ -4,20 +4,24 @@
 ### ROADMAP and MODELS
 
 - [+] AutoEncoder Like Structure 
-- VAE Like Structure ( with/out LSTM or Simple Concating )
-- VAE Like Structure With a GAN
+- [+] VAE Like Structure ( with/out LSTM or Simple Concating )
+- [+] VAE Like Structure With a GAN
 - VAE like Structure With a BiGAN or GAN and a separete enconding of face 
-- Inpainting Baseline
+- [+] Inpainting Baseline
 - Possible Combo of All of these
 
+### NEW TASKS 20.05-05.06.2021
 
-### NEW TASKS 20-27.05.2021
-
+- **[Çağhan]** KL loss olmadan model eğit.
+- **[Barış]** Conv-LSTM ile modeli eğit ve sonuç karşılaştır.
 - **[Barış]** DCGAN yapısı düzgün çalışacak hale getirilmeli, genel yüz yapısı, face orientation, color info falan tutturulmalı
 - **[Gürkan]** Inpainting içindeki Fine Pass çıkartılarak Global ve Local Discr. Coarse generator'a bağlanmalı, reconstruction kalitesi
+	- Run with higher embedding size, train with the new dataset.
+	- Implement reconstruction results and evaluate PSNR.
 - **[Çağhan]** StyleGAN implementasyonu bizim yapıya benzetip golden yüz datasıyla eğitmek e.g. [Style-Based-GAN](https://github.com/rosinality/style-based-gan-pytorch).
-- **[Barış & Çağhan]** DCGAN Loss yapısını WGAN Loss tarzına çevirmek
+- **[Barış & Çağhan]** DCGAN Loss yapısını WGAN Loss tarzına çevirmek.
 - **[Gürkan]** Grid-/RandomSearch tarzında bir yapı ile doğru hyper-parameter arama.
+
 
 
 ## CNN Backbone Yapısı Eğitimi
