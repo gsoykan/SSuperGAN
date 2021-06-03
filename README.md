@@ -314,6 +314,52 @@ gan_loss_alpha: 0.001
 wgan_gp_lambda: 10
 ```
 
+### SSUPER_MSGGAN Module
+- In order to run the module 'ssuper_msggan_config.yaml' file should be created under configs.
+- Example Config:
+
+# Encoder Parameters
+backbone: "efficientnet-b5"
+embed_dim: 256
+latent_dim: 512 
+use_lstm: False
+
+# Plain Encoder Parameters
+seq_size: 3
+
+# LSTM Encoder Parameters
+lstm_hidden: 256
+lstm_dropout: 0
+fc_hidden_dims: []
+fc_dropout: 0
+num_lstm_layers: 1
+masked_first: True
+
+image_dim : 64
+
+# Training Parameters
+batch_size: 4
+train_epochs: 100
+lr: 0.0002
+weight_decay: 0.000025
+beta_1: 0.5
+beta_2: 0.999
+g_clip: 100
+
+
+depth : 5
+use_eql : False
+use_ema : False
+ema_decay : 0.999
+
+g_lr : 0.003
+
+d_lr : 0.001
+
+loss_function : "relativistic-hinge"
+
+
+
 ### Project Based Configuration
 
 One should check and update 'configs/base_config' for global config parameters such base project directory.
