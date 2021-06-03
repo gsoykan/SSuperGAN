@@ -317,7 +317,7 @@ wgan_gp_lambda: 10
 ### SSUPER_MSGGAN Module
 - In order to run the module 'ssuper_msggan_config.yaml' file should be created under configs.
 - Example Config:
-
+```yaml
 # Encoder Parameters
 backbone: "efficientnet-b5"
 embed_dim: 256
@@ -357,7 +357,7 @@ g_lr : 0.003
 d_lr : 0.001
 
 loss_function : "relativistic-hinge"
-
+'''
 
 
 ### Project Based Configuration
