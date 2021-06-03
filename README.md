@@ -357,7 +357,7 @@ g_lr : 0.003
 d_lr : 0.001
 
 loss_function : "relativistic-hinge"
-'''
+```
 
 
 ### Project Based Configuration
