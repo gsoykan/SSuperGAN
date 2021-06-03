@@ -40,7 +40,7 @@ class BaseTrainer(object):
         self.grad_clip = grad_clip
         self.best_loss_action = best_loss_action
         self.checkpoint_every_epoch = checkpoint_every_epoch
-        self.checkpoint_path = self.save_dir + 'ckpts/'
+        self.checkpoint_path = self.save_dir + 'ckpts_msggan/'
 
     def save_checkpoint(self, current_epoch, current_loss):
         """

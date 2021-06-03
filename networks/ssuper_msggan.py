@@ -78,7 +78,7 @@ class SSuperMSGGAN(nn.Module):
         #z = torch.unsqueeze(z, (3))
         outputs,_ = self.gan.gen(z)
         
-        return z, None, mu, outputs[-1], lg_std
+        return z, None, mu, outputs, lg_std
         
 
     def encode(self, x):

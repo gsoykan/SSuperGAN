@@ -64,7 +64,7 @@ class SSuperDCGANTrainer(BaseTrainer):
 
     def train_epochs(self, starting_epoch=None, losses={}):
         metric_recorder = MetricRecorder(experiment_name=self.model_name,
-                                         save_dir=self.save_dir + '/results/')
+                                         save_dir=self.save_dir + '/results_msggan/')
         # TODO: becareful about best loss here this might override the actual best loss
         #  in case of continuation of training
         best_loss = 99999999

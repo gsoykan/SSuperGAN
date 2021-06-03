@@ -65,13 +65,13 @@ def train(data_loader,config,dataset, model_name='ssuper_dcgan',):
 
     optimizer_encoder = optim.Adam(net.encoder.parameters(), lr=config.lr)
 
-    gen_params = [{'params': net.gen.style.parameters(), 'lr': config.g_lr * 0.01, 'mult': 0.01},
-                  {'params': net.gen.layers.parameters(), 'lr': config.g_lr},
-                  {'params': net.gen.rgb_converters.parameters(), 'lr': config.g_lr}]
+    gen_params = [{'params': net.gan.gen.style.parameters(), 'lr': config.g_lr * 0.01, 'mult': 0.01},
+                  {'params': net.gan.gen.layers.parameters(), 'lr': config.g_lr},
+                  {'params': net.gan.gen.rgb_converters.parameters(), 'lr': config.g_lr}]
     gen_optim = torch.optim.Adam(gen_params, config.g_lr,
                               [config.beta_1, config.beta_2])
 
-    dis_optim = torch.optim.Adam(net.dis.parameters(), config.d_lr,
+    dis_optim = torch.optim.Adam(net.gan.dis.parameters(), config.d_lr,
                               [config.beta_1, config.beta_2])
 
 
@@ -107,7 +107,7 @@ def train(data_loader,config,dataset, model_name='ssuper_dcgan',):
                          optimized_discriminator= dis_optim,
                          grad_clip=config.g_clip,
                          best_loss_action=lambda m, l: save_best_loss_model(model_name, m, l),
-                         save_dir=base_dir + 'playground/ssuper_msggan/',
+                         save_dir=base_dir + 'playground/ssuper_msggan',
                          checkpoint_every_epoch=True
                         )
 

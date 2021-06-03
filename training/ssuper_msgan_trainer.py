@@ -22,7 +22,7 @@ from utils.plot_utils import *
 from utils import pytorch_util as ptu
 from configs.base_config import *
 
-from functional.losses import RelativisticAverageHingeGAN
+from functional.losses.msggan_losses import RelativisticAverageHingeGAN
 import torch.nn as nn
 
 from collections import OrderedDict
@@ -59,7 +59,7 @@ class SSuperMSGGANTrainer(BaseTrainer):
                  quiet: bool = False,
                  grad_clip=None,
                  best_loss_action=None,
-                 save_dir=base_dir + 'playground/SSuperDCGAN/',
+                 save_dir=base_dir + 'playground/ssuper_msggan/',
                  checkpoint_every_epoch=False):
         super().__init__(model,
                          model_name,
@@ -157,17 +157,21 @@ class SSuperMSGGANTrainer(BaseTrainer):
             target = x if y is None else y
 
             images = [target] + [avg_pool2d(target, int(np.power(2, i)))
-                                     for i in range(1, self.depth)]
+                                     for i in range(1, self.model.depth)]
 
             images[0].requires_grad = True
             images = list(reversed(images))
 
 
-            out = elbo(z, target, mu_z, mu_x, logstd_z, l1_recon=False)
-
+            out = elbo(z, target, mu_z, mu_x[-1], logstd_z, l1_recon=False)
+            
+            
             reconstruction_loss = out["reconstruction_loss"]/10
             kl_loss = out["kl_loss"]
             total_loss = out["loss"]
+
+            # UPDATE ENCODER
+            total_loss.backward(retain_graph=True)
 
             
             #Optimize Discriminator
@@ -198,9 +202,7 @@ class SSuperMSGGANTrainer(BaseTrainer):
 
 
 
-            # UPDATE ENCODER
-            total_loss.backward(retain_graph=True)
-
+            
             
     
         
