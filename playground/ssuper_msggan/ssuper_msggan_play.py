@@ -12,7 +12,7 @@ from data.datasets.golden_faces import GoldenFacesDataset
 from data.datasets.golden_panels import GoldenPanelsDataset
 
 from training.ssuper_msgan_trainer import SSuperMSGGANTrainer
-from training.ssuper_msgan_trainer import  
+
 from utils.config_utils import read_config, Config
 from utils.logging_utils import *
 from utils.plot_utils import *
@@ -107,7 +107,7 @@ def train(data_loader,config,dataset, model_name='ssuper_dcgan',):
                          optimized_discriminator= dis_optim,
                          grad_clip=config.g_clip,
                          best_loss_action=lambda m, l: save_best_loss_model(model_name, m, l),
-                         save_dir=base_dir + 'playground/ssuper_msggan',
+                         save_dir=base_dir + 'playground/ssuper_msggan/',
                          checkpoint_every_epoch=True
                         )
 
@@ -159,5 +159,3 @@ if __name__ == '__main__':
     torch.save(model, base_dir + 'playground/ssuper_msggan/results/' + "ssuper_msggan_model.pth")
         
     
-        
-        

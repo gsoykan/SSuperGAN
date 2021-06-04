@@ -113,10 +113,10 @@ class Discriminator(torch.nn.Module):
             "Mismatch between input and Network scales"
 
         y = self.rgb_to_features[self.depth - 2](inputs[self.depth - 1])
-        print("Y.shape First",y.shape)
+        #print("Y.shape First",y.shape)
         
         y = self.layers[self.depth - 2](y)
-        print("Y.shape Second",y.shape)
+        #print("Y.shape Second",y.shape)
         for x, block, converter in \
                 zip(reversed(inputs[1:-1]),
                     reversed(self.layers[:-1]),

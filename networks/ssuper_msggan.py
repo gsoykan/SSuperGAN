@@ -73,7 +73,7 @@ class SSuperMSGGAN(nn.Module):
         mu, lg_std = self.encode(x)
         z = torch.distributions.Normal(mu, lg_std.exp()).rsample()
         
-        print("Z shape",z.shape, "X shape ",x.shape)
+        #print("Z shape",z.shape, "X shape ",x.shape)
         #z = torch.unsqueeze(z, (2))
         #z = torch.unsqueeze(z, (3))
         outputs,_ = self.gan.gen(z)
@@ -89,13 +89,17 @@ class SSuperMSGGAN(nn.Module):
         return mu
 
     def decode(self, z):
-        return self.gan.gen(z)[-1]
+        outputs,_ = self.gan.gen(z)
+        #print("OUtputs", len(outputs))
+        #print(gen_out)
+        return outputs[-1]
 
     def sample(self, size: int):
         z = self.latent_dist.rsample((size, self.latent_dim)).squeeze(-1)
-        z = torch.unsqueeze(z, (2))
-        # print("Forward z shape ",z.shape)
-        z = torch.unsqueeze(z, (3))
+        #print("Z shape ")
+        #z = torch.unsqueeze(z, (2))
+        #print("Forward z shape ",z.shape)
+        #z = torch.unsqueeze(z, (3))
         # print("Sample z size : ",z.shape)
         return self.decode(z)
 

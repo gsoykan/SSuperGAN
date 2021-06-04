@@ -180,36 +180,33 @@ class SSuperMSGGANTrainer(BaseTrainer):
             fake_samples = list(map(lambda x: x.detach(), mu_x))
 
             disc_loss = self.criterion.dis_loss(images, fake_samples)
+            
+            
+            if disc_loss > 4:
+                # optimize discriminator
+                self.optimizers["optimizer_discriminator"].zero_grad()
+                disc_loss.backward()
+                self.optimizers["optimizer_discriminator"].step()
 
-            # optimize discriminator
-            self.optimizers["optimizer_discriminator"].zero_grad()
-            disc_loss.backward()
-            self.optimizers["optimizer_discriminator"].step()
-
-
-            #
-
+           
+           
             # optimize the generator:
-
-
-            gen_loss = self.criterion.gen_loss(images, fake_samples)
-
-            gen_loss = gen_loss + reconstruction_loss
+            gen_out_loss = self.criterion.gen_loss(images, list(mu_x))
+            gen_loss = gen_out_loss + reconstruction_loss
             # optimize discriminator
             self.optimizers["optimizer_generator"].zero_grad()
             gen_loss.backward()
             self.optimizers["optimizer_generator"].step()
 
 
-
             
-            
+            self.optimizers["optimizer_encoder"].step()
     
         
             #self.optimizers["optimizer_encoder"].step()
             desc = f'Epoch {epoch}'
             out["disc_loss"] =  disc_loss
-            out["gen_loss"] = gen_loss
+            out["gen_loss"] = gen_out_loss
             for k, v in out.items():
                 if k not in losses:
                     losses[k] = []
